@@ -1,0 +1,18 @@
+<flex-config xmlns="http://www.adobe.com/2006/flex-config">
+  <target-player>9.0.124</target-player>
+  <compiler>
+    <debug>true</debug>
+    <source-path>
+      <path-element>src</path-element>
+      <path-element>D:/git/as3-signals/src</path-element>
+      <path-element>D:/svn/FoomongerSwizFramework/src</path-element>
+    </source-path>
+    <library-path append="true">
+      <path-element>D:/git/swiz-framework/bin/swiz-framework-1.0.0-alpha.swc</path-element>
+    </library-path>
+  </compiler>
+  <file-specs>
+    <path-element>src/SwizHelloWorld.as</path-element>
+  </file-specs>
+  <output>D:/demos/swiz-crap/out/production/swiz-crap/_SwizHelloWorld.swf</output>
+</flex-config>

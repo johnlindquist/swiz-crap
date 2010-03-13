@@ -1,32 +1,55 @@
 package view
 {
+    import com.foomonger.swizframework.processors.MediateSignalProcessor;
+
     import flash.display.Sprite;
 
     import model.Model;
 
     import org.swizframework.core.Bean;
+    import org.swizframework.core.BeanFactory;
     import org.swizframework.core.BeanProvider;
+    import org.swizframework.core.SwizConfig;
     import org.swizframework.core.mxml.Swiz;
+
+    import signal.ClickedSignal;
 
     public class SwizView extends Sprite
     {
-        private var bp:BeanProvider;
-        private var swiz:Swiz;
-
         public function SwizView()
         {
-            var model:Model = new Model();
-            var modelDescription:String = "someUniqueString"
+//            SwizLogger.addLoggingTarget(new TraceTarget());
 
-            var modelBean:Bean = new Bean(model, modelDescription);
-            var beans:Array = [modelBean];
+            //config
+            var swizConfig:SwizConfig = new SwizConfig();
+            swizConfig.viewPackages = ["view"];
 
-            bp = new BeanProvider(beans);
+            //bean factory
+            var beanFactory:BeanFactory = new BeanFactory();
 
-            swiz = new Swiz(this, null, null, [bp]);
+            //bean providers
+            var modelBean:Bean = new Bean(new Model(), "modeloni");
+            var signalBean:Bean = new Bean(new ClickedSignal(), "siggy")
+
+            var beans:Array = [modelBean, signalBean];
+
+            var beanProvider:BeanProvider =  new BeanProvider(beans)
+            var beanProviders:Array = [beanProvider]
+
+            //custom processors
+            var mediateSignalProcessor:MediateSignalProcessor = new MediateSignalProcessor();
+            mediateSignalProcessor.signalPackages = ["signal"];
+            mediateSignalProcessor.strictArgumentTypes = true;
+
+            var customProcessors:Array = [mediateSignalProcessor];
+
+            //init
+            var swiz:Swiz = new Swiz(this, swizConfig, beanFactory, beanProviders, customProcessors);
             swiz.init();
 
-            addChild(new View());
+            //bombs away!
+            addChild(new ClickOnMeView());
+            addChild(new ShowClicksView()).x = 100;
         }
     }
 }
