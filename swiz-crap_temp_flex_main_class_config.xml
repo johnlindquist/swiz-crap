@@ -9,6 +9,7 @@
     </source-path>
     <library-path append="true">
       <path-element>D:/git/swiz-framework/bin/swiz-framework-1.0.0-alpha.swc</path-element>
+      <path-element>D:/git/flight-framework/project/bin/flight-framework.swc</path-element>
     </library-path>
   </compiler>
   <file-specs>

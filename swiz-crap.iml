@@ -22,6 +22,7 @@
     <orderEntry type="library" name="swiz-framework" level="application" />
     <orderEntry type="library" name="as3-signals" level="application" />
     <orderEntry type="library" name="FoomongerSwizFramework" level="application" />
+    <orderEntry type="library" name="flight-framework" level="application" />
   </component>
 </module>
 

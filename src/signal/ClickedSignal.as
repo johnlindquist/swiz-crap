@@ -4,11 +4,9 @@ package signal
 
     public class ClickedSignal extends Signal
     {
-
         public function ClickedSignal()
         {
             super(String);
-            
         }
     }
 }

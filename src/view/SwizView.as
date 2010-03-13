@@ -2,6 +2,7 @@ package view
 {
     import com.foomonger.swizframework.processors.MediateSignalProcessor;
 
+    import flash.display.DisplayObject;
     import flash.display.Sprite;
 
     import model.Model;
@@ -16,6 +17,10 @@ package view
 
     public class SwizView extends Sprite
     {
+        public var clickOnMeView:DisplayObject;
+
+        public var showClicksView:DisplayObject;
+
         public function SwizView()
         {
 //            SwizLogger.addLoggingTarget(new TraceTarget());
@@ -48,8 +53,10 @@ package view
             swiz.init();
 
             //bombs away!
-            addChild(new ClickOnMeView());
-            addChild(new ShowClicksView()).x = 100;
+            clickOnMeView = addChild(new ClickOnMeView());
+            showClicksView = addChild(new ShowClicksView());
+
+            showClicksView.x = 100;
         }
     }
 }

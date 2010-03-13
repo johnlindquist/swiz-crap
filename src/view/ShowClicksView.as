@@ -1,38 +1,34 @@
 package view
 {
     import flash.display.Sprite;
-    import flash.events.Event;
     import flash.text.TextField;
+
+    import flight.binding.Bind;
 
     import model.Model;
 
     public class ShowClicksView extends Sprite
     {
 
-        private var clicksDisplay:TextField;
+        public var clicksDisplay:TextField;
+        public var helloWorldDisplay:TextField;
 
         public function ShowClicksView()
         {
             clicksDisplay = new TextField();
+            helloWorldDisplay = new TextField();
+
+            clicksDisplay.y = 15;
+
             addChild(clicksDisplay);
-            
+            addChild(helloWorldDisplay);
         }
 
         [Inject]
-        public var modelVar:Model;
-
-        [PostConstruct]
-        public function displayHelloWorld():void
+        public function set model(value:Model):void
         {
-            clicksDisplay.text += modelVar.data;
-        }
-
-        [MediateSignal(type="ClickedSignal")]
-        public function udpateClicksDisplay(message:String):void
-        {
-            //nothing happens :(
-            trace(message);
-            clicksDisplay.text += message;
+            helloWorldDisplay.text = value.data;
+            Bind.addBinding(clicksDisplay, "text", value, "clicksCount");
         }
     }
 }
