@@ -1,17 +1,19 @@
-package view
+package views
 {
     import com.foomonger.swizframework.processors.MediateSignalProcessor;
 
     import flash.display.DisplayObject;
     import flash.display.Sprite;
 
-    import model.Model;
+    import models.Model;
 
     import org.swizframework.core.Bean;
     import org.swizframework.core.BeanFactory;
     import org.swizframework.core.BeanProvider;
     import org.swizframework.core.SwizConfig;
     import org.swizframework.core.mxml.Swiz;
+
+    import processors.FlightBindingProcessor;
 
     import signal.ClickedSignal;
 
@@ -27,13 +29,13 @@ package view
 
             //config
             var swizConfig:SwizConfig = new SwizConfig();
-            swizConfig.viewPackages = ["view"];
+            swizConfig.viewPackages = ["views"];
 
             //bean factory
             var beanFactory:BeanFactory = new BeanFactory();
 
             //bean providers
-            var modelBean:Bean = new Bean(new Model(), "modeloni");
+            var modelBean:Bean = new Bean(new Model(), "simpleModel");
             var signalBean:Bean = new Bean(new ClickedSignal(), "siggy")
 
             var beans:Array = [modelBean, signalBean];
@@ -46,7 +48,9 @@ package view
             mediateSignalProcessor.signalPackages = ["signal"];
             mediateSignalProcessor.strictArgumentTypes = true;
 
-            var customProcessors:Array = [mediateSignalProcessor];
+            var flightBindingProcessor:FlightBindingProcessor = new FlightBindingProcessor();
+
+            var customProcessors:Array = [mediateSignalProcessor, flightBindingProcessor];
 
             //init
             var swiz:Swiz = new Swiz(this, swizConfig, beanFactory, beanProviders, customProcessors);

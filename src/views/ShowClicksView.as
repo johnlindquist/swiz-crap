@@ -1,16 +1,14 @@
-package view
+package views
 {
     import flash.display.Sprite;
     import flash.text.TextField;
 
-    import flight.binding.Bind;
-
-    import model.Model;
-
     public class ShowClicksView extends Sprite
     {
-
+        [Bind(source="simpleModel.data", targetProperty="text")]
         public var clicksDisplay:TextField;
+
+        [Bind(source="simpleModel.clicksCount", targetProperty="text")]        
         public var helloWorldDisplay:TextField;
 
         public function ShowClicksView()
@@ -22,16 +20,6 @@ package view
 
             addChild(clicksDisplay);
             addChild(helloWorldDisplay);
-        }
-
-        [Inject]
-        public var crapModel:Model;
-
-        [PostConstruct]
-        public function construct():void
-        {
-            Bind.addBinding(helloWorldDisplay, "text", crapModel, "data");
-            Bind.addBinding(clicksDisplay, "text", crapModel, "clicksCount");
         }
     }
 }
