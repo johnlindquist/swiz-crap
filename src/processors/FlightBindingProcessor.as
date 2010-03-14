@@ -2,6 +2,8 @@ package processors
 {
     import flight.binding.Bind;
 
+    import flight.binding.Binding;
+
     import org.swizframework.core.Bean;
     import org.swizframework.processors.BaseMetadataProcessor;
     import org.swizframework.reflection.IMetadataTag;
@@ -15,6 +17,8 @@ package processors
         {
             super([BIND]);
         }
+
+        protected var binding:Binding;
 
         override public function setUpMetadataTag(metadataTag:IMetadataTag, bean:Bean):void
         {
@@ -50,7 +54,15 @@ package processors
             var sourcePropertyName:String = sourceBeanName.split(".")[1];
 
             //Flight binding
-            Bind.addBinding(targetParent, targetPath, source, sourcePropertyName);
+            binding = Bind.addBinding(targetParent, targetPath, source, sourcePropertyName);
+        }
+
+
+        override public function tearDownMetadataTag(metadataTag:IMetadataTag, bean:Bean):void
+        {
+            //TODO: consider what else needs to be done here
+            binding.release();
+            binding = null;
         }
     }
 }
