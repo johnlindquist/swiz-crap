@@ -25,10 +25,13 @@ package view
         }
 
         [Inject]
-        public function set model(value:Model):void
+        public var crapModel:Model;
+
+        [PostConstruct]
+        public function construct():void
         {
-            helloWorldDisplay.text = value.data;
-            Bind.addBinding(clicksDisplay, "text", value, "clicksCount");
+            Bind.addBinding(helloWorldDisplay, "text", crapModel, "data");
+            Bind.addBinding(clicksDisplay, "text", crapModel, "clicksCount");
         }
     }
 }

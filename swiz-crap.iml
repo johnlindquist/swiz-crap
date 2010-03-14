@@ -5,6 +5,7 @@
     <option name="MAIN_CLASS" value="SwizHelloWorld" />
     <option name="OUTPUT_FILE_NAME" value="HelloWorld.swf" />
     <option name="TARGET_PLAYER_VERSION" value="9.0.124" />
+    <option name="ADDITIONAL_COMPILER_OPTIONS" value="-keep-as3-metadata+=MediateSignal" />
   </component>
   <component name="NewModuleRootManager" inherit-compiler-output="true">
     <exclude-output />
