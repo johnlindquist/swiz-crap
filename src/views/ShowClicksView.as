@@ -6,10 +6,10 @@ package views
     public class ShowClicksView extends Sprite
     {
         [Bind(source="simpleModel.data", targetProperty="text")]
-        public var clicksDisplay:TextField;
+        public var helloWorldDisplay:TextField;
 
         [Bind(source="simpleModel.clicksCount", targetProperty="text")]        
-        public var helloWorldDisplay:TextField;
+        public var clicksDisplay:TextField;
 
         public function ShowClicksView()
         {
